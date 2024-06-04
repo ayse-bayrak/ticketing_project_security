@@ -28,19 +28,22 @@ public class BaseEntity {
     private Long lastUpdateUserId;
 
 
-    @PrePersist
-    private void onPrePersist(){
-        this.insertDateTime = LocalDateTime.now();
-        this.lastUpdateDateTime=LocalDateTime.now();
-        this.insertUserId=1L;
-        this.lastUpdateUserId=1L;
-    }
-
-    @PreUpdate
-    private void onPreUpdate(){
-        this.lastUpdateDateTime=LocalDateTime.now();
-        this.lastUpdateUserId=1L;
-    }
+    // Here is BaseEntity and I can not inherit from BaseEntity
+    //So I need to create another class which is implementing that listener
+    //this two portion remove from here and add another class
+//    @PrePersist
+//    private void onPrePersist(){
+//        this.insertDateTime = LocalDateTime.now();
+//        this.lastUpdateDateTime=LocalDateTime.now();
+//        this.insertUserId=1L;
+//        this.lastUpdateUserId=1L;
+//    }
+//
+//    @PreUpdate
+//    private void onPreUpdate(){
+//        this.lastUpdateDateTime=LocalDateTime.now();
+//        this.lastUpdateUserId=1L;
+//    }
 
 
 
