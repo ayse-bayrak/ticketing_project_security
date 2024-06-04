@@ -13,6 +13,7 @@ import com.cydeo.service.TaskService;
 import com.cydeo.service.UserService;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -97,8 +98,13 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public List<ProjectDTO> listAllProjectDetails() {
+        String username= SecurityContextHolder.getContext().getAuthentication().getName();
+        //secuity is gonna bring me the information of the user who ever is logging in the application at that moment.
+        // when I want to project create page as a manager Mike, I could not see and I gave source can not be null error
+        //because there some information project related with manager. But earlier in here I put hardcoded log in harold@
+        //UserDTO currentUserDTO = userService.findByUserName("harold@manager.com");
 
-        UserDTO currentUserDTO = userService.findByUserName("harold@manager.com");
+        UserDTO currentUserDTO = userService.findByUserName(username);
         User user = userMapper.convertToEntity(currentUserDTO);
 
         List<Project> list = projectRepository.findAllByAssignedManager(user);
