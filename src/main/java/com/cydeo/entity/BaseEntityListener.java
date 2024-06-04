@@ -16,30 +16,32 @@ public class BaseEntityListener extends AuditingEntityListener {
     @PrePersist
     private void onPrePersist(BaseEntity baseEntity){
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //I am getting the all information belongs to user who login in the system
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         baseEntity.setInsertDateTime(LocalDateTime.now());
         baseEntity.setLastUpdateDateTime(LocalDateTime.now());
 
-      if (authentication != null && authentication.getName().equals("anonymousUser")) {
-          Object principal = authentication.getPrincipal();
-          baseEntity.setInsertUserId(((UserPrincipal) principal) .getId());
-          baseEntity.setLastUpdateUserId( ((UserPrincipal) principal) .getId());
-      }
+        if(authentication != null && !authentication.getName().equals("anonymousUser")){
+            Object principal = authentication.getPrincipal();
+            baseEntity.setInsertUserId(((UserPrincipal) principal).getId());
+            baseEntity.setLastUpdateUserId( ((UserPrincipal) principal).getId());
+        }
     }
 
     @PreUpdate
     private void onPreUpdate(BaseEntity baseEntity){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
         baseEntity.setLastUpdateDateTime(LocalDateTime.now());
-        if (authentication != null && authentication.getName().equals("anonymousUser")) {
+
+        if(authentication != null && !authentication.getName().equals("anonymousUser")){
             Object principal = authentication.getPrincipal();
-            baseEntity.setInsertUserId(((UserPrincipal) principal) .getId());
-            baseEntity.setLastUpdateUserId( ((UserPrincipal) principal) .getId());
+            baseEntity.setLastUpdateUserId( ((UserPrincipal) principal).getId());
         }
     }
 
-   //whenever we create or update something, we are keeping some information which is who did it, what time did it?
+   //whenever we create or update something, we are keeping some information with security potion which is who did it,
+    // what time did it? how I did this one by using the listener
 
 }
