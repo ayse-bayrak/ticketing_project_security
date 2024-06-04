@@ -9,9 +9,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class UserPrincipal implements UserDetails {
+public class UserPrincipal implements UserDetails { // think it as mapper, get to User from db or any user that you want to user Spring understands
+    //for convert to UserDetails data type because Spring understands only this
 
-    private User user;
+    private User user; // I am giving one User and convert to userDetails
 
     public UserPrincipal(User user) {
         this.user = user;
