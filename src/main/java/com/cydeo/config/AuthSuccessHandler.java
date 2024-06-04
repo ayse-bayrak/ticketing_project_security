@@ -24,7 +24,7 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
             response.sendRedirect("/tas/create");
         }
         if (roles.contains("Employee")) {
-            response.sendRedirect("/task/employee");
+            response.sendRedirect("/task/employee/pending-tasks");
         }
         // in interview if they ask you any core Java or OOP question, you can explain with your application usage,
         // even if they ask how about if question
