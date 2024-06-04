@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @MappedSuperclass
+@EntityListeners((BaseEntityListener.class))
 public class BaseEntity {
 
     @Id
@@ -44,8 +45,5 @@ public class BaseEntity {
 //        this.lastUpdateDateTime=LocalDateTime.now();
 //        this.lastUpdateUserId=1L;
 //    }
-
-
-
 
 }
