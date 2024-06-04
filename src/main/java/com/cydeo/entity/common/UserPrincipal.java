@@ -55,4 +55,8 @@ public class UserPrincipal implements UserDetails { // think it as mapper, get t
     public boolean isEnabled() {
         return this.user.isEnabled();
     }
+
+    public Long getId(){
+        return this.user.getId();
+    }
 }
