@@ -1,14 +1,24 @@
 package com.cydeo.config;
 
+import com.cydeo.entity.User;
 import com.cydeo.service.SecurityService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Configuration
-public class SecurityConfig {
+public class SecurityConfig {// we create this Config class to create bigger Bean implementation, we can write as a Separate Config class
 
     private final SecurityService securityService;
     private final AuthSuccessHandler authSuccessHandler;
@@ -18,7 +28,6 @@ public class SecurityConfig {
         this.authSuccessHandler = authSuccessHandler;
     }
 
-
 //    @Bean
 //    public UserDetailsService userDetailService (PasswordEncoder encoder) {
 //    List<UserDetails> userList = new ArrayList<>();
@@ -27,7 +36,7 @@ public class SecurityConfig {
 //        userList.add(
 //                new User("ayse", encoder.encode("password"), Arrays.asList(new SimpleGrantedAuthority("ROLE_MANAGER"))));
 //    return new InMemoryUserDetailsManager(userList);
-//    } FIRSTLY  I CREATE AS A MANUALLY
+//    }// FIRSTLY  I CREATE AS A MANUALLY
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
