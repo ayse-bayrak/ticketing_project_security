@@ -41,7 +41,7 @@ public class BaseEntityListener extends AuditingEntityListener {
         }
     }
 
-   //whenever we create or update something, we are keeping some information with security potion which is who did it,
+   //whenever we create or update something, we are keeping some information with security portion which is who did it,
     // what time did it? how I did this one by using the listener
 
 }
