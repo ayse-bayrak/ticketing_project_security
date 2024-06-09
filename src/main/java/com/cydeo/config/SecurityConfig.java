@@ -44,7 +44,7 @@ public class SecurityConfig {// we create this Config class to create bigger Bea
         return http
                 .authorizeRequests()
                // .antMatchers("/user/**").hasRole("ADMIN") // ROLE_ADMIN--> if I want to hasRole I need to go to my database and I need to change the Role_..
-                .antMatchers("/user/**").hasAuthority("Admin") // in my app, certain roles should able to see ceratin pages
+                .antMatchers("/user/**").hasAuthority("Admin") // in my app, certain roles should be able to see certain pages
                 .antMatchers("/project/**").hasAuthority("Manager")
                 .antMatchers("/task/employee/**").hasAuthority("Employee")
                 .antMatchers("/task/**").hasAuthority("Manager")
@@ -56,7 +56,7 @@ public class SecurityConfig {// we create this Config class to create bigger Bea
                         "/fragments/**",
                         "/assets/**",
                         "/images/**"
-                ).permitAll() // everybody should be able to access to this pages, anybody can access
+                ).permitAll() // everybody should be able to access to these pages, anybody can access
                 .anyRequest().authenticated()
                 .and()
                 //.httpBasic()// I want to use my own login page so I command it
