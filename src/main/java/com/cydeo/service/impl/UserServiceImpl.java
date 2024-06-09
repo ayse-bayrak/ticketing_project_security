@@ -55,6 +55,7 @@ public class UserServiceImpl implements UserService {
         //after the save I set the password as encode through passwordEncoder,
         // so i injected PasswordEncoder
         userRepository.save(obj);
+
     }
 
 //    @Override
@@ -69,11 +70,14 @@ public class UserServiceImpl implements UserService {
         //Find current user
         User user1 = userRepository.findByUserNameAndIsDeleted(user.getUserName(), false);  //has id
         //Map update user dto to entity object
+
         User convertedUser = userMapper.convertToEntity(user);   // has id?
         //set id to the converted object
         convertedUser.setId(user1.getId());
         //save the updated user in the db
-        userRepository.save(convertedUser);
+
+        userRepository.save(convertedUser); //instead of this ->
+        //save(userMapper.convertToDto(convertedUser)); // I can add this part.. I am waiting Reyhan response
 
         return findByUserName(user.getUserName());
 
