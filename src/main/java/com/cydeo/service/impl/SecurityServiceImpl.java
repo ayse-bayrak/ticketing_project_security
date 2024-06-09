@@ -26,8 +26,8 @@ public class SecurityServiceImpl implements SecurityService {
             throw new UsernameNotFoundException(username);
         }
 
-        return new UserPrincipal(user); // for mapper convert to UserDetails object which is understand Spring
+        return new UserPrincipal(user); // for mapper convert to UserDetails object which is understood Spring
         //get the user from db,and convert to user springs understands by using userPrincipal
-    // I am gonna give the User which is coming from the database to Spring by using loadUserByUsername method is coming form the UserDetailsService
+    // I am going to give the User which is coming from the database to Spring by using loadUserByUsername method is coming from the UserDetailsService
     }
 }
