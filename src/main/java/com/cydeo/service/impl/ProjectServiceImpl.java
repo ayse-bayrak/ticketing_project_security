@@ -99,7 +99,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<ProjectDTO> listAllProjectDetails() {
         String username= SecurityContextHolder.getContext().getAuthentication().getName();
-        //secuity is gonna bring me the information of the user who ever is logging in the application at that moment.
+        //security is gonna bring me the information of the user who ever is logging in the application at that moment.
         // when I want to project create page as a manager Mike, I could not see and I gave source can not be null error
         //because there some information project related with manager. But earlier in here I put hardcoded log in harold@
         //UserDTO currentUserDTO = userService.findByUserName("harold@manager.com");
