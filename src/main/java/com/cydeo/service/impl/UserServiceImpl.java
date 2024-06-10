@@ -76,8 +76,13 @@ public class UserServiceImpl implements UserService {
         convertedUser.setId(user1.getId());
         //save the updated user in the db
 
+        //reyhan suggest and adding two lines like below
+        convertedUser.setEnabled(user1.isEnabled());
+        convertedUser.setPassWord(passwordEncoder.encode(user.getPassWord()));
+
         userRepository.save(convertedUser); //instead of this ->
         //save(userMapper.convertToDto(convertedUser)); // I can add this part.. I am waiting Reyhan response
+
 
         return findByUserName(user.getUserName());
 

@@ -60,22 +60,22 @@ public class SecurityConfig {// we create this Config class to create bigger Bea
                 .anyRequest().authenticated()
                 .and()
                 //.httpBasic()// I want to use my own login page so I command it
-                .formLogin() // I want to introduce my own validation form to Spring
-                     .loginPage("/login")
+                    .formLogin() // I want to introduce my own validation form to Spring
+                    .loginPage("/login")
                     // .defaultSuccessUrl("/welcome")// whenever User is successfull done or User autoticated correct username and password this is the page we gonna land it,  it is gonna navigate to welcome page
                 // I will modified which pages I will land it after log in the system, i will change default stuff
-                .successHandler(authSuccessHandler)
-                .failureUrl("/login?error=true") // if user put the wrong information username and password, I want to navigate to this URL
+                    .successHandler(authSuccessHandler)
+                    .failureUrl("/login?error=true") // if user put the wrong information username and password, I want to navigate to this URL
                      .permitAll() // should be accessible by anyone
                 .and() // we put between this separate part .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login")
+                    .logout()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .logoutSuccessUrl("/login")
                 .and()
-                .rememberMe()
-                .tokenValiditySeconds(120)
-                .key("cydeo")
-                .userDetailsService(securityService)
+                    .rememberMe()
+                    .tokenValiditySeconds(120)
+                    .key("cydeo")
+                    .userDetailsService(securityService)
                 .and().build(); // at the end finish everything we put .build()
     }
 }
