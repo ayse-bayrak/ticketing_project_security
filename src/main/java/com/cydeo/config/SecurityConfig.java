@@ -40,7 +40,7 @@ public class SecurityConfig {// we create this Config class to create bigger Bea
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-       // I use this SecurityFilterChain interface because I want to introduce my own validation from to Spring
+       // I use this SecurityFilterChain interface and HttpSecurity as a bean because I want to introduce my own validation from to Spring
         return http
                 .authorizeRequests()
                // .antMatchers("/user/**").hasRole("ADMIN") // ROLE_ADMIN--> if I want to hasRole I need to go to my database and I need to change the Role_..
@@ -62,7 +62,8 @@ public class SecurityConfig {// we create this Config class to create bigger Bea
                 //.httpBasic()// I want to use my own login page so I command it
                     .formLogin() // I want to introduce my own validation form to Spring
                     .loginPage("/login")
-                    // .defaultSuccessUrl("/welcome")// whenever User is successfull done or User autoticated correct username and password this is the page we gonna land it,  it is gonna navigate to welcome page
+                    // .defaultSuccessUrl("/welcome")// whenever User is successfull done or User autoticated correct username and password this is the page we gonna land it,
+                // it is gonna navigate to welcome page
                 // I will modified which pages I will land it after log in the system, i will change default stuff
                     .successHandler(authSuccessHandler)
                     .failureUrl("/login?error=true") // if user put the wrong information username and password, I want to navigate to this URL

@@ -49,10 +49,10 @@ public class UserServiceImpl implements UserService {
     public void save(UserDTO user) {
         user.setEnabled(true);
         //when I create new User and when I want to login with this user, I couldn't,
-        // because boolean enable is false as default,so after save this user I set enable as true
+        // because boolean enable is false as default,so before save this user I set enable as true
         User obj = userMapper.convertToEntity(user);
         obj.setPassWord(passwordEncoder.encode(obj.getPassWord()));
-        //after the save I set the password as encode through passwordEncoder,
+        //before the save I set the password as encode through passwordEncoder,
         // so i injected PasswordEncoder
         userRepository.save(obj);
 
@@ -82,7 +82,6 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(convertedUser); //instead of this ->
         //save(userMapper.convertToDto(convertedUser)); // I can add this part.. I am waiting Reyhan response
-
 
         return findByUserName(user.getUserName());
 

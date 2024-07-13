@@ -11,12 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Set;
 
+//I created AuthSuccessHandler class which implements AuthenticationSuccessHandler interface
+// to be able to set up landing page after successful login.
 @Configuration
 public class AuthSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
     Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
     //whenever authenticate is done, it is capturing that user role
+
         if (roles.contains("Admin")) {
             response.sendRedirect("/user/create");
         }
