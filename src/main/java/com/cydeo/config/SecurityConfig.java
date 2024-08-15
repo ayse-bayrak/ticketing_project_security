@@ -52,7 +52,7 @@ public class SecurityConfig {// we create this Config class to create bigger Bea
                // .antMatchers("task/**").hasAuthority("ROLE_EMPLOYEE")   // hasAuthority needs to be ROLE_,
                 .antMatchers( // antMatchers related with the pages
                         "/",
-                         "login",
+                         "/login",
                         "/fragments/**",
                         "/assets/**",
                         "/images/**"
