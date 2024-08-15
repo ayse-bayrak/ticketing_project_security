@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 // I created this class which implements UserDetails  interface
-// ti convert my user entity to spring security standard (UserDetails interface)
+// it converts my user entity to spring security standard (UserDetails interface)
 
 public class UserPrincipal implements UserDetails { // think it as mapper,
     // get to User from db or any user that you want to user Spring understands
